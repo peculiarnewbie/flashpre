@@ -1,2 +1,2 @@
 Flashe
-![Sample](/public/images/black.png)
+![Sample](/public/img/black.png)
