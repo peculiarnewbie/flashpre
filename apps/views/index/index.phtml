@@ -1,0 +1,68 @@
+
+
+
+<style>
+body {
+    background: rgb(220,224,234);
+  background-size: cover;
+}
+</style>
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 3rem;  background-image: url('/img/black.jpg'); background-size: cover;">
+    <div class="container">
+        <div class="jumbotron" style="margin-left: 15rem; margin-right: 15rem; background: rgba(220, 220, 240, 0.7);">
+        <div class="display-1"style="color: black; text-align: center; font-weight-bold;">FLASH</div>
+        <div class="display-9" style="color: black; text-align: center;">quick and simple flash cards</div>
+        <div class="container" style="text-align: center;">
+            <?php
+
+                echo $this->tag->linkTo([
+                    'Core',
+                    'Start',
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "margin-top: 5rem; text-align: right;",
+                ]);
+
+                // echo $this->tag->linkTo([
+                //     'user/login',
+                //     'Login',
+                //     "class" => "btn btn-light btn-lg pull-right",
+                //     "style" => "margin-top: 5rem; margin-left: 5rem;",
+                // ]);
+            ?>
+        </div>
+        </div>
+        
+    </div>
+    
+
+</div>
+
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
+    <h1>Start learning today</h1>
+    <p>Easier said than done</p>
+    <?php
+
+                    echo $this->tag->linkTo([
+                        'signup',
+                        'Sign up',
+                        "class" => "btn btn-light btn-lg pull-right",
+                        "style" => "margin-top: 5rem; text-align: right;",
+                    ]);
+
+                    // echo $this->tag->linkTo([
+                    //     'user/login',
+                    //     'Login',
+                    //     "class" => "btn btn-light btn-lg pull-right",
+                    //     "style" => "margin-top: 5rem; margin-left: 5rem;",
+                    // ]);
+                ?>
+    </div>
+</div>
+
+<!-- <blockquote class="blockquote">
+  <p class="mb-0">“You can never understand one language until you understand at least two.”</p>
+  <footer class="blockquote-footer">Geoffrey Willans</footer>
+</blockquote> -->
+

@@ -1,2 +1,2 @@
-# flashpre
-simply flash card app
+# trellite
+Trellite is individual final project for framework-based programming course

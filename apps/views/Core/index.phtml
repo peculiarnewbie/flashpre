@@ -1,0 +1,65 @@
+
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
+        <h1>Start learning today</h1>
+        <p>Easier said than done</p>
+
+        <?php
+
+echo "<h3>Your Decks</h3>";
+
+
+if ($decks->count() > 0) {
+    ?>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Size</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td colspan="3">decks quantity: <?php echo $decks->count(); ?></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <?php foreach ($decks as $deck) { ?>
+            <tr>
+                <td><?php echo $deck->id; ?></td>
+                <td><?php echo $deck->name; ?></td>
+                <td><?php echo $deck->size; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php
+}
+?>
+
+</div>
+
+    
+
+
+<?php echo $this->tag->form("Core/add"); ?>
+
+    <p>
+        <label for="name">Name</label>
+        <?php echo $this->tag->textField("name"); ?>
+    </p>
+
+    <p>
+        <label for="size">Size</label>
+        <?php echo $this->tag->textField("size"); ?>
+    </p>
+
+    <p>
+        <?php echo $this->tag->submitButton("Add"); ?>
+    </p>
+
+</form>
+
+</div>
+
