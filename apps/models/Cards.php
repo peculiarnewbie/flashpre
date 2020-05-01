@@ -2,11 +2,13 @@
 
 use Phalcon\Mvc\Model;
 
-class Decks extends Model
+class Cards extends Model
 {
     public $id;
-    public $name;
-    public $size;
+    public $deck_id;
+    public $front;
+    public $back;
+    public $weight;
 
     public function setId($id)
     {
@@ -15,9 +17,9 @@ class Decks extends Model
         return $this;
     }
 
-    public function setName($name)
+    public function setFront($front)
     {
-        $this->name = $name;
+        $this->front = $front;
 
         return $this;
     }

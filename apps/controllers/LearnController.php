@@ -2,23 +2,14 @@
 
 use Phalcon\Mvc\Controller;
 
-class CoreController extends Controller
+class LearnController extends Controller
 {
     public function indexAction()
     {
-        $this->view->decks = Decks::find();
-    }
-
-    public function addAction(){
-
         
-
-
-        return '<h1>Add</h1>';
     }
-    
-    public function addDeck(){
 
+    public function flipAction(){
         $deck = new Decks();
 
         //assign value from the form to $user
@@ -40,7 +31,7 @@ class CoreController extends Controller
             $message = "deck added";
         } else {
             $message = "Sorry, the following problems were generated:<br>"
-                     . implode('<br>', $deck->getMessages());
+                     . implode('<br>', $user->getMessages());
         }
 
         // passing a message to the view

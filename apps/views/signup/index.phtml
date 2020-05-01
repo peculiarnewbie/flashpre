@@ -1,6 +1,4 @@
-<h2>Sign up using this form</h2>
-
-<?php echo $this->tag->form("signup/register"); ?>
+<?php echo $this->tag->form("Core/add"); ?>
 
     <p>
         <label for="name">Name</label>
@@ -8,12 +6,12 @@
     </p>
 
     <p>
-        <label for="email">E-Mail</label>
-        <?php echo $this->tag->textField("email"); ?>
+        <label for="size">Size</label>
+        <?php echo $this->tag->textField("size"); ?>
     </p>
 
     <p>
-        <?php echo $this->tag->submitButton("Register"); ?>
+        <?php echo $this->tag->submitButton("Add"); ?>
     </p>
 
 </form>

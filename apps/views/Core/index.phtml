@@ -1,13 +1,27 @@
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
-        <h1>Start learning today</h1>
+        <h1>Start learning</h1>
         <p>Easier said than done</p>
 
-        <?php
+        
+
+<?php echo $this->tag->linkTo([
+                    'Learn',
+                    'Start Learning',
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "text-align: center;",
+                ]);
+            ?>
+
+<?php
 
 echo "<h3>Your Decks</h3>";
 
+echo '<form action="functioncalling.php">
+            <input type="text" name="txt" />
+            <input type="submit" name="search" value="search" onclick="search()" />
+        </form>';
 
 if ($decks->count() > 0) {
     ?>
@@ -38,9 +52,16 @@ if ($decks->count() > 0) {
 }
 ?>
 
-</div>
 
-    
+<?php echo $this->tag->linkTo([
+                    'Core/Add',
+                    'Add more',
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "text-align: right;",
+                ]);
+            ?>
+
+</div>
 
 
 <?php echo $this->tag->form("Core/add"); ?>
