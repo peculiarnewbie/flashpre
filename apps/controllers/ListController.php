@@ -2,41 +2,43 @@
 
 use Phalcon\Mvc\Controller;
 
-class CoreController extends Controller
+class ListController extends Controller
 {
     public function indexAction()
     {
-        $this->view->decks = Decks::find();
+        
+        $this->view->cards = Cards::find();
     }
 
-    public function addAction(){
-
+    public function cardsAction($deck_id)
+    {
+        $this->view->deck_id = $deck_id;
+        $this->view->cards = Cards::find();
     }
 
-    public function addconfirmAction(){
-
-        $deck = new Decks();
+    public function addAction($deck_id){
+        $card = new Cards();
 
         //assign value from the form to $user
-        $deck->assign(
+        $card->assign(
             $this->request->getPost(),
             [
-                'name',
-                'size'
+                'front',
+                'back'
             ]
         );
 
         // Store and check for errors
-        $success = $deck->save();
+        $success = $card->save();
 
         // passing the result to the view
         $this->view->success = $success;
 
         if ($success) {
-            $message = "deck added";
+            $message = "card added";
         } else {
             $message = "Sorry, the following problems were generated:<br>"
-                     . implode('<br>', $deck->getMessages());
+                     . implode('<br>', $card->getMessages());
         }
 
         // passing a message to the view
@@ -45,7 +47,7 @@ class CoreController extends Controller
 
     public function searchAction(){
 
-        $this->view->decks = Decks::find();
+        $this->view->cards = Cards::find();
 
         $query = $this->request->getPost('name');
 
@@ -53,10 +55,5 @@ class CoreController extends Controller
 
         $this->view->sq = $sq;
 
-    }
-    
-    public function addDeck(){
-
-        
     }
 }

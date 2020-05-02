@@ -37,6 +37,6 @@ class SignupController extends Controller
 
         // passing a message to the view
         $this->view->message = $message;
-        return '<h1>Registering...</h1>';
+        //return '<h1>Registering...</h1>';
     }
 }

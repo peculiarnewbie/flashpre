@@ -1,3 +1,15 @@
+<div class = "container">
+    <div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+        <?php echo $message; ?>
+    </div>
+
+    <?php 
+        if($success === true){
+            echo $this->tag->linkTo(['/Core', 'Go back', 'class' => 'btn btn-primary']); }
+        else{
+            echo $this->tag->linkTo(['/Core/add', 'Go back', 'class' => 'btn btn-primary']); }
+    ?>
+</div>
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
@@ -16,7 +28,7 @@
 
 
 
-<h3>Your Decks</h3>"
+<h3>Cards in this deck</h3>"
 
 <?php echo $this->tag->form("Core/search"); ?>
 
@@ -33,7 +45,7 @@
         </form> -->
 
      <?php
-if ($decks->count() > 0) {
+if ($cards->count() > 0) {
     ?>
     <table class="table table-bordered table-hover">
         <thead class="thead-light">
@@ -45,19 +57,20 @@ if ($decks->count() > 0) {
         </thead>
         <tfoot>
         <tr>
-            <td colspan="5">decks quantity: <?php echo $decks->count(); ?></td>
+            <td colspan="5">cards quantity: <?php echo $cards->count(); ?></td>
         </tr>
         </tfoot>
         <tbody>
         <?php
         //$decks = Decks::find(["name = 'Buku'"]); 
-        foreach ($decks as $deck) { ?>
+        foreach ($cards as $card) { ?>
             <tr>
-                <td><?php echo $deck->id; ?></td>
-                <td><?php echo $deck->name; ?></td>
-                <td><?php echo $deck->size; ?></td>
+                <td><?php echo $card->id; ?></td>
+                <td><?php echo $card->name; ?></td>
+                <td><?php echo $card->front; ?></td>
+                <td><?php echo $card->back; ?></td>
                 <td><?php echo $this->tag->linkTo(["Learn/" . $deck->id, "Learn"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["List/cards/" . $deck->id, "List"]); ?></td>
+                <td><?php echo $this->tag->linkTo(["List/" . $deck->id, "List"]); ?></td>
             </tr>
         <?php } ?>
         </tbody>
@@ -67,15 +80,22 @@ if ($decks->count() > 0) {
 ?>
 
 
-<?php echo $this->tag->linkTo([
-                    'Core/Add',
-                    'Add more',
-                    "class" => "btn btn-light btn-lg pull-right",
-                    "style" => "text-align: right;",
-                ]);
-            ?>
+<?php echo $this->tag->form("List/cards/" . $deck_id); ?>
 
-</div>
+
+        <label for="front">Front</label>
+        <?php echo $this->tag->textField("front"); ?>
+
+
+
+        <label for="back">Back</label>
+        <?php echo $this->tag->textField("back"); ?>
+
+
+        <?php echo $this->tag->submitButton("Add"); ?>
+
+
+</form>
 
 
 
