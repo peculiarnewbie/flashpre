@@ -9,22 +9,20 @@
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
-        <h1>Start learning</h1>
-        <p>Easier said than done</p>
+        <h2>Pass time</h2>
 
         
 
-<?php echo $this->tag->linkTo([
-                    'List/learn/1',
-                    'Start Learning',
-                    "class" => "btn btn-light btn-lg pull-right",
-                    "style" => "text-align: center;",
-                ]);
-            ?>
+<?php echo $this->tag->form("Core"); ?>
+        <?php echo "<input type='hidden'  name='skip' value='go'>";?>
+        <?php echo $this->tag->submitButton("Skip 1 day"); ?>
+
+
+</form>
 
 
 
-<h3>Your Decks</h3>"
+<h3>Your Decks</h3>
 
 <?php echo $this->tag->form("Core"); ?>
 

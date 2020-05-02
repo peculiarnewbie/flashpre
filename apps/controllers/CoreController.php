@@ -10,7 +10,22 @@ class CoreController extends Controller
 
         $this->view->cards = Cards::find();
 
-        
+        $skip = $this->request->getPost('skip');
+
+        if($skip === 'go'){
+            $cards = Cards::find();
+
+            foreach($cards as $card){
+                $time = $card->time;
+                if($time > 0){
+                    $time -= 1;
+                }
+                $card->assign(array(
+                    'time' => $time
+                ));
+                $success = $card->save();
+            }
+        }
         
         $query = $this->request->getPost('name');
 
@@ -26,6 +41,11 @@ class CoreController extends Controller
 
     public function addAction(){
 
+    }
+
+    public function skipAction(){
+        
+        
     }
 
     public function addconfirmAction(){
