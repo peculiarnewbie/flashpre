@@ -1,0 +1,43 @@
+<?php
+        if($success && $message ){
+    ?>
+<div class = "container">
+    <div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+        <?php echo $message; ?>
+    </div>
+
+    <?php 
+            echo $this->tag->linkTo(['/List/cards/' . $deck_id , 'Go back', 'class' => 'btn btn-primary']);
+    ?>
+</div>
+
+<?php
+        }
+    ?>
+
+<div class = "container">
+    
+    <?php
+        echo $currentCard->front;
+        echo $deck_id;
+    ?>
+
+    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
+
+        echo "<input type='hidden'  name='weight'  value=" . $currentCard->weight . ">";
+        echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Again"); ?>
+
+    </form>
+
+    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); ?>
+
+        <input type="hidden"  name="weight"  value=1>
+        <input type="hidden"  name="card_id" value=1>
+        <?php echo $this->tag->submitButton("Good"); ?>
+
+    </form>
+
+    
+</div>

@@ -2,7 +2,7 @@
 
 use Phalcon\Mvc\Model;
 
-class Cards extends Model
+class Weights extends Model
 {
     public $id;
     public $weight;

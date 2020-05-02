@@ -1,11 +1,16 @@
-<div class="container">
-    <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
-        <p class="text-center">think of the meaning</p>
+<div class = "container">
+    
+    <?php
+        echo $currentCard->front;
+    ?>
 
-        <form action="functioncalling.php">
-            <input type="text" name="txt" />
-            <input type="submit" name="insert" value="insert" onclick="insert()" />
-            <input type="submit" name="select" value="select" onclick="select()" />
-        </form>
+    <?php echo $this->tag->form("List/learn/updatetime/" . $deck_id . "/1" ); ?>
+
+        <input type="hidden"  name="weight"  value=1>
+        <input type="hidden"  name="card_id" value=1>
+        <?php echo $this->tag->submitButton("Update"); ?>
+
+
+    </form>
 
 </div>
