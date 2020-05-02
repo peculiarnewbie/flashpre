@@ -1,0 +1,62 @@
+<?php
+        if($success && $message ){
+    ?>
+<div class = "container">
+    <div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+        <?php echo $message; ?>
+    </div>
+
+    <?php 
+            echo $this->tag->linkTo(['/List/cards/' . $deck_id , 'Go back', 'class' => 'btn btn-primary']);
+    ?>
+</div>
+
+<?php
+        }
+    ?>
+
+<div class = "container">
+    <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
+    
+    <?php
+        echo $currentCard->front;
+        echo $currentCard->back;
+    ?>
+
+    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
+
+        $weight = 1;
+        $time = 0;
+        echo "<input type='hidden'  name='weight'  value=" . $weight . ">";
+        echo "<input type='hidden'  name='time'  value=" . $time . ">";
+        echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Again"); ?>
+
+    </form>
+
+    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
+        $weights = Weights::findFirstById(2);
+        $weight = ceil($currentCard->weight*$weights->weight);
+        $time = ceil($currentCard->weight*$weights->weight);
+        echo "<input type='hidden'  name='weight'  value=" . $weight . ">";
+        echo "<input type='hidden'  name='time'  value=" . $time . ">";
+        echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Good"); ?>
+
+    </form>
+
+    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
+        $weights = Weights::findFirstById(3);
+        $weight = ceil($currentCard->weight*$weights->weight);
+        $time = ceil($currentCard->weight*$weights->weight);
+        echo "<input type='hidden'  name='weight'  value=" . $weight . ">";
+        echo "<input type='hidden'  name='time'  value=" . $time . ">";
+        echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        ?>
+        <?php echo $this->tag->submitButton("Easy"); ?>
+
+    </form>
+    </div>
+</div>

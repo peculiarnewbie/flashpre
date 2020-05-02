@@ -11,6 +11,10 @@ class CoreController extends Controller
         $this->view->cards = Cards::find();
 
         $skip = $this->request->getPost('skip');
+        $reset = $this->request->getPost('reset');
+        $edit = $this->request->getPost('edit');
+        $good = $this->request->getPost('good');
+        $easy = $this->request->getPost('easy');
 
         if($skip === 'go'){
             $cards = Cards::find();
@@ -26,6 +30,37 @@ class CoreController extends Controller
                 $success = $card->save();
             }
         }
+
+        if($reset === 'go'){
+            $cards = Cards::find();
+
+            foreach($cards as $card){
+                $time = 0;
+                $weight = 1;
+                $card->assign(array(
+                    'time' => $time,
+                    'weight' => $weight
+                ));
+                $success = $card->save();
+            }
+        }
+
+        
+        if($edit === 'go'){
+            $weightgood = Weights::findFirstById(2);
+            $weightgood->assign(array(
+                'weight' => $good
+            ));
+            $success = $weightgood->save();
+
+            
+            $weighteasy = Weights::findFirstById(3);
+            $weighteasy->assign(array(
+                'weight' => $easy
+            ));
+            $success = $weighteasy->save();
+
+        }
         
         $query = $this->request->getPost('name');
 
@@ -37,6 +72,11 @@ class CoreController extends Controller
         }
 
         $this->view->sq = $sq;
+    }
+
+    public function editAction(){
+        
+
     }
 
     public function addAction(){

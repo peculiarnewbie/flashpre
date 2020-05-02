@@ -4,11 +4,7 @@
 <div class = "container">
     <div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
         <?php echo $message; ?>
-    </div>
 
-    <?php 
-            echo $this->tag->linkTo(['/List/cards/' . $deck_id , 'Go back', 'class' => 'btn btn-primary']);
-    ?>
 </div>
 
 <?php
@@ -16,27 +12,32 @@
     ?>
 
 <div class = "container">
-    
-    <?php
-        echo $currentCard->front;
-    ?>
+    <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
 
-    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
-
-        echo "<input type='hidden'  name='weight'  value=" . $currentCard->weight . ">";
-        echo "<input type='hidden'  name='card_id' value=" . $currentCard->id . ">";
+        <?php 
+                echo $this->tag->linkTo(['/List/cards/' . $deck_id , 'Go back', 'class' => 'btn btn-primary']);
         ?>
-        <?php echo $this->tag->submitButton("Again"); ?>
 
-    </form>
+        <br />
 
-    <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); ?>
-
-        <input type="hidden"  name="weight"  value=1>
-        <input type="hidden"  name="card_id" value=1>
-        <?php echo $this->tag->submitButton("Good"); ?>
-
-    </form>
-
-    
+        <br />
+            
+            <?php
+                if($currentCard){
+                    echo $currentCard->front;
+                    ?>
+                    
+        <br />
+                    <?php echo $this->tag->linkTo([
+                        'List/reveal/' . $deck_id . '/' . $currentCard->id,
+                        'Reveal',
+                        "class" => "btn btn-light btn-lg pull-right",
+                        "style" => "text-align: center;",
+                    ]);}
+                else{?>
+                    <h1>Good job!</h1>
+                    <p>All cards in deck learned for today</p>
+                <?php }
+                    ?>
+    </div>
 </div>

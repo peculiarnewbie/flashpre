@@ -1,0 +1,19 @@
+<h2>Sign up using this form</h2>
+
+<?php echo $this->tag->form("Core/"); ?>
+
+    <p>
+        <label for="good">Good Weight Multiplier</label>
+        <?php echo $this->tag->textField("good"); ?>
+    </p>
+
+    <p>
+        <label for="easy">Easy Weight Multiplier</label>
+        <?php echo $this->tag->textField("easy"); ?>
+    </p>
+    <?php echo "<input type='hidden'  name='edit' value='go'>";?>
+    <p>
+        <?php echo $this->tag->submitButton("Edit"); ?>
+    </p>
+
+</form>

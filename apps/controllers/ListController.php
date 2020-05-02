@@ -94,13 +94,15 @@ class ListController extends Controller
             //$query = $this->request->getPost("card_id", "weight");
             $card_id = $this->request->getPost("card_id");
             $weight = $this->request->getPost("weight");
+            $time = $this->request->getPost("time");
 
             //updatetime($card_id, $weight);
             $update = Cards::findFirstById($card_id);
             
             if($update){
                 $update->assign(array(
-                    'time' => $weight
+                    'weight' => $weight,
+                    'time' => $time,
                 ));
             }
             $success = $update->save();
@@ -108,7 +110,7 @@ class ListController extends Controller
 
             $this->view->card_id = $card_id;
             if ($success) {
-                $message = "Thanks for registering!";
+                $message = "Card time updated!";
             } else {
                 $message = "Sorry, the following problems were generated:<br>"
                          . implode('<br>', $user->getMessages());
@@ -118,7 +120,9 @@ class ListController extends Controller
             $this->view->message = $message;
             
         }
-        
+        $this->view->success = $success;
+        $this->view->message = $message;
+
         $this->view->cards = Cards::find();
 
         $conditions = ['time'=>0, 'deck_id'=>$deck_id];
@@ -138,27 +142,24 @@ class ListController extends Controller
         
     }
 
-    public function updatetimeAction($card_id, $weight){
-        $servername = "localhost";
-        $username = "root";
-        $password = "secret";
-        $dbname = "tutorial";
+    public function revealAction($deck_id, $card_id){
+        
+        $this->view->success = $success;
+        $this->view->message = $message;
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        $this->view->cards = Cards::find();
 
-        $sql = "UPDATE `tutorial`.`cards` SET `time` = $weight WHERE (`id` = $card_id);";
+        $conditions = ['time'=>0, 'deck_id'=>$deck_id];
+        $this->view->currentCard = Cards::findFirst(
+            [
+                
+                'conditions' => 'time=:time: AND deck_id=:deck_id:',
+                'bind' => $conditions,
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
-
-        $conn->close();
+            ]
+            );
+        $this->view->weights = Weights::find();
+        
+        $this->view->deck_id = $deck_id;
     }
 }

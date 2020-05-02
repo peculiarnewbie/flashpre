@@ -16,8 +16,15 @@
 <?php echo $this->tag->form("Core"); ?>
         <?php echo "<input type='hidden'  name='skip' value='go'>";?>
         <?php echo $this->tag->submitButton("Skip 1 day"); ?>
+</form>
 
+<?php echo $this->tag->form("Core"); ?>
+        <?php echo "<input type='hidden'  name='reset' value='go'>";?>
+        <?php echo $this->tag->submitButton("Reset weight"); ?>
+</form>
 
+<?php echo $this->tag->form("Core/edit"); ?>
+        <?php echo $this->tag->submitButton("Edit weight"); ?>
 </form>
 
 
