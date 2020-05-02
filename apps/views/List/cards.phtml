@@ -1,15 +1,10 @@
-<div class = "container">
-    <div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
-        <?php echo $message; ?>
-    </div>
-
-    <?php 
-        if($success === true){
-            echo $this->tag->linkTo(['/Core', 'Go back', 'class' => 'btn btn-primary']); }
-        else{
-            echo $this->tag->linkTo(['/Core/add', 'Go back', 'class' => 'btn btn-primary']); }
-    ?>
-</div>
+<?php echo $this->tag->linkTo([
+                    '/',
+                    'Home',
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "text-align: center;",
+                ]);
+            ?>
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
@@ -30,7 +25,7 @@
 
 <h3>Cards in this deck</h3>"
 
-<?php echo $this->tag->form("Core/search"); ?>
+<?php echo $this->tag->form("List/cards/" . $deck_id); ?>
 
         <label for="name"></label>
         <?php echo $this->tag->textField("name"); ?>
@@ -53,6 +48,8 @@ if ($cards->count() > 0) {
             <th>#</th>
             <th>Name</th>
             <th>Size</th>
+            <th>Weight</th>
+            <th>Time</th>
         </tr>
         </thead>
         <tfoot>
@@ -63,16 +60,30 @@ if ($cards->count() > 0) {
         <tbody>
         <?php
         //$decks = Decks::find(["name = 'Buku'"]); 
-        foreach ($cards as $card) { ?>
-            <tr>
-                <td><?php echo $card->id; ?></td>
-                <td><?php echo $card->name; ?></td>
-                <td><?php echo $card->front; ?></td>
-                <td><?php echo $card->back; ?></td>
-                <td><?php echo $this->tag->linkTo(["Learn/" . $deck->id, "Learn"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["List/" . $deck->id, "List"]); ?></td>
-            </tr>
-        <?php } ?>
+        foreach ($cards as $card) {
+        if($card->deck_id === $deck_id){
+            if($sq !== NULL){
+                if(strpos($card->front, $sq) !== false || strpos($card->back, $sq) !== false){?>
+                    <tr>
+                        <td><?php echo $card->id; ?></td>
+                        <td><?php echo $card->front; ?></td>
+                        <td><?php echo $card->back; ?></td>
+                        <td><?php echo $card->weight; ?></td>
+                        <td><?php echo $card->time; ?></td>
+                        <td><?php echo $this->tag->linkTo(["List/edit/" . $card->deck_id . "/". $card->id, "Edit"]); ?></td>
+                    </tr>
+
+            <?php }} 
+            else{?>
+                <tr>
+                    <td><?php echo $card->id; ?></td>
+                    <td><?php echo $card->front; ?></td>
+                    <td><?php echo $card->back; ?></td>
+                    <td><?php echo $card->weight; ?></td>
+                    <td><?php echo $card->time; ?></td>
+                    <td><?php echo $this->tag->linkTo(["List/edit/" . $card->deck_id . "/". $card->id, "Edit"]); ?></td>
+                </tr>
+        <?php }}} ?>
         </tbody>
     </table>
     <?php
@@ -80,7 +91,7 @@ if ($cards->count() > 0) {
 ?>
 
 
-<?php echo $this->tag->form("List/cards/" . $deck_id); ?>
+<?php echo $this->tag->form("List/add/" . $deck_id); ?>
 
 
         <label for="front">Front</label>

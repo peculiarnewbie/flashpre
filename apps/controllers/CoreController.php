@@ -7,6 +7,21 @@ class CoreController extends Controller
     public function indexAction()
     {
         $this->view->decks = Decks::find();
+
+        $this->view->cards = Cards::find();
+
+        
+        
+        $query = $this->request->getPost('name');
+
+        if($query === ""){
+            $sq = NULL;
+        }
+        else{
+             $sq = $query;
+        }
+
+        $this->view->sq = $sq;
     }
 
     public function addAction(){

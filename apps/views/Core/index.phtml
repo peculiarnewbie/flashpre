@@ -1,3 +1,11 @@
+<?php echo $this->tag->linkTo([
+                    '/',
+                    'Home',
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "text-align: center;",
+                ]);
+            ?>
+
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
@@ -18,7 +26,7 @@
 
 <h3>Your Decks</h3>"
 
-<?php echo $this->tag->form("Core/search"); ?>
+<?php echo $this->tag->form("Core"); ?>
 
         <label for="name"></label>
         <?php echo $this->tag->textField("name"); ?>
@@ -50,16 +58,38 @@ if ($decks->count() > 0) {
         </tfoot>
         <tbody>
         <?php
-        //$decks = Decks::find(["name = 'Buku'"]); 
-        foreach ($decks as $deck) { ?>
-            <tr>
-                <td><?php echo $deck->id; ?></td>
-                <td><?php echo $deck->name; ?></td>
-                <td><?php echo $deck->size; ?></td>
-                <td><?php echo $this->tag->linkTo(["Learn/" . $deck->id, "Learn"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["List/cards/" . $deck->id, "List"]); ?></td>
-            </tr>
-        <?php } ?>
+        foreach ($decks as $deck) {
+            if($sq !== NULL){
+                if(strpos($deck->name, $sq) !== false){?>
+                    <tr>
+                        <td><?php echo $deck->id; ?></td>
+                        <td><?php echo $deck->name; ?></td>
+                        <td><?php 
+                                $size = 0;
+                                foreach($cards as $card){
+                                    if($card->deck_id === $deck->id){
+                                        $size++;
+                                    }
+                                }echo $size; ?></td>
+                        <td><?php echo $this->tag->linkTo(["Learn/" . $deck->id, "Learn"]); ?></td>
+                        <td><?php echo $this->tag->linkTo(["List/cards/" . $deck->id, "List"]); ?></td>
+                    </tr>
+            <?php }} 
+            else{?>
+                <tr>
+                    <td><?php echo $deck->id; ?></td>
+                    <td><?php echo $deck->name; ?></td>
+                    <td><?php 
+                                $size = 0;
+                                foreach($cards as $card){
+                                    if($card->deck_id === $deck->id){
+                                        $size++;
+                                    }
+                                }echo $size; ?></td>
+                    <td><?php echo $this->tag->linkTo(["Learn/" . $deck->id, "Learn"]); ?></td>
+                    <td><?php echo $this->tag->linkTo(["List/cards/" . $deck->id, "List"]); ?></td>
+                </tr>
+        <?php }} ?>
         </tbody>
     </table>
     <?php

@@ -9,6 +9,7 @@ class Cards extends Model
     public $front;
     public $back;
     public $weight;
+    public $time;
 
     public function setId($id)
     {

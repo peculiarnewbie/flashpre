@@ -8,23 +8,44 @@ class ListController extends Controller
     {
         
         $this->view->cards = Cards::find();
+
+        
     }
 
     public function cardsAction($deck_id)
     {
         $this->view->deck_id = $deck_id;
         $this->view->cards = Cards::find();
+
+        $query = $this->request->getPost('name');
+
+        if($query === ""){
+            $sq = NULL;
+        }
+        else{
+             $sq = $query;
+        }
+
+        $this->view->sq = $sq;
     }
 
-    public function addAction($deck_id){
+    public function addAction($deck_id, $weight = 1){
         $card = new Cards();
 
         //assign value from the form to $user
         $card->assign(
+            [
+                'deck_id' => $deck_id,
+                'weight' => $weight,
+                'time' => 0,
+            ]
+        );
+        $card->assign(
             $this->request->getPost(),
             [
                 'front',
-                'back'
+                'back',
+                
             ]
         );
 
@@ -43,6 +64,7 @@ class ListController extends Controller
 
         // passing a message to the view
         $this->view->message = $message;
+        $this->view->deck_id = $deck_id;
     }
 
     public function searchAction(){
@@ -54,6 +76,14 @@ class ListController extends Controller
         $sq = $query;
 
         $this->view->sq = $sq;
+
+    }
+
+    public function editAction($deck_id, $id){
+
+        echo $deck_id;
+        echo "whaat";
+        echo $id;
 
     }
 }
