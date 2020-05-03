@@ -19,9 +19,15 @@
     <div class="jumbotron jumbotron-fluid" style="background: rgba(220,224,234, 0.8)">
     
     <?php
-        echo $currentCard->front;
+        echo $currentCard->front;?>
+        </br>
+        </br>
+        <p>answer:</p><?php
         echo $currentCard->back;
     ?>
+
+</br>
+        </br>
 
     <?php echo $this->tag->form("List/learn/" . $deck_id . "/1" ); 
 
