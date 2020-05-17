@@ -1,18 +1,12 @@
 <?php
 
 use Phalcon\Mvc\Controller;
-
 use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 
-class IndexController extends Controller
+class PresentasiController extends Controller
 {
-    public function indexAction()
-    {
-        $this->view->users = Users::find();
-        $this->view->t    = $this->getTranslation();
-    }
 
     protected function getTranslation(): NativeArray
     {
@@ -38,4 +32,12 @@ class IndexController extends Controller
             ]
         );
     }
+
+    public function indexAction()
+    {
+        $this->view->name = 'Irshad';
+        $this->view->t    = $this->getTranslation();
+    }
+
+    
 }

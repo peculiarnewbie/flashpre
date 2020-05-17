@@ -12,12 +12,12 @@ body {
     <div class="container">
         <div class="jumbotron" style="margin-left: 15rem; margin-right: 15rem; background: rgba(220, 220, 240, 0.7);">
         <div class="display-1"style="color: black; text-align: center; font-weight-bold;">FLASH</div>
-        <div class="display-9" style="color: black; text-align: center;">quick and simple flash cards</div>
+        <div class="display-9" style="color: black; text-align: center;"><?php echo $t->_('quick'); ?></div>
         <div class="container" style="text-align: center;">
             <?php
 
                 echo $this->tag->linkTo([
-                    'Core',
+                    'Presentasi',
                     'Start',
                     "class" => "btn btn-light btn-lg pull-right",
                     "style" => "margin-top: 5rem; text-align: right;",

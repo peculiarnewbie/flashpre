@@ -1,0 +1,14 @@
+<!-- welcome -->
+<!-- String: hi-name => 'Hello %name%' -->
+<p><?php echo $t->_('hi-name', ['name' => $name]); ?></p>
+
+
+            <?php
+
+                echo $this->tag->linkTo([
+                    'Core',
+                    $t->_('send'), //'Start'
+                    "class" => "btn btn-light btn-lg pull-right",
+                    "style" => "margin-top: 5rem; text-align: right;",
+                ]);
+            ?>
